@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import cn from './lib/cn'
+import cn from './utils/cn'
 
 const lights = [
   { id: 'green', colorClass: 'bg-emerald-500', durationMs: 5000 },
