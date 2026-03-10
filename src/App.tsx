@@ -23,7 +23,7 @@ function App() {
     <div className='flex flex-col items-center justify-center gap-6 w-screen h-screen bg-slate-900 text-white'>
       <h1 className='text-3xl font-semibold tracking-wide'>stoplight</h1>
       <div className='flex flex-col items-center gap-4'>
-        <div className='flex flex-col items-center gap-2 rounded-full bg-slate-800 p-4 shadow-lg'>
+        <div className='flex flex-col items-center gap-2 rounded-lg bg-slate-800 p-4 shadow-lg'>
           {lights.map((light, index) => (
             <div
               key={light.id}
