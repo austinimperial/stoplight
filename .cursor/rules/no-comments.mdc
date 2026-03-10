@@ -1,0 +1,11 @@
+---
+description: Disallow code comments in this project
+alwaysApply: true
+---
+
+# No Comments in Code
+
+- The AI assistant must **not add comments** to any code it writes or edits.
+- When modifying existing code, **do not introduce new comments**, even if surrounding code already has comments.
+- Prefer clear, self-explanatory names and structure instead of comments for explaining intent.
+- If an explanation is necessary, provide it **only in the chat response**, not in the code.
