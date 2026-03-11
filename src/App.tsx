@@ -5,6 +5,7 @@ import cn from './utils/cn'
 const lights = [
   { id: 'green', colorClass: 'bg-emerald-500', durationMs: 5000 },
   { id: 'yellow', colorClass: 'bg-yellow-400', durationMs: 1000 },
+  { id: 'pink', colorClass: 'bg-pink-500', durationMs: 1500 },
   { id: 'red', colorClass: 'bg-red-500', durationMs: 2000 },
 ] as const
 
