@@ -1,0 +1,46 @@
+---
+description: Enforce typed props on React function components
+alwaysApply: true
+---
+
+# Function Component Prop Typing
+
+- **Use React function components with typed props**.
+- **Always declare a dedicated props interface or type** for each component.
+- **Type the component using `React.FC<Props>`** so that props are enforced.
+
+## Required Patterns
+
+- **Define props separately**:
+
+```typescript
+interface Props {
+  // define props here
+}
+```
+
+- **Declare the component with `React.FC<Props>`**:
+
+```typescript
+const Component: React.FC<Props> = (props) => {
+  return null;
+};
+```
+
+## Prohibited Patterns
+
+- **Untyped or implicitly typed props**:
+
+```typescript
+const Component = (props) => {
+  return null;
+};
+```
+
+- **Component without a props interface or type alias**:
+
+```typescript
+const Component: React.FC = () => {
+  return null;
+};
+```

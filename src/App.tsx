@@ -1,40 +1,79 @@
-import { useEffect, useState } from 'react'
+import type React from 'react'
 import './App.css'
-import cn from './utils/cn'
+import { Stoplight } from './components/Stoplight'
+import type { StoplightPhase } from './components/Stoplight'
 
-const lights = [
-  { id: 'green', colorClass: 'bg-emerald-500', durationMs: 5000 },
+type AppProps = object
+
+const phases1: StoplightPhase[] = [
+  { id: 'green', colorClass: 'bg-emerald-500', durationMs: 1000 },
   { id: 'yellow', colorClass: 'bg-yellow-400', durationMs: 1000 },
-  { id: 'red', colorClass: 'bg-red-500', durationMs: 2000 },
+  { id: 'red', colorClass: 'bg-red-500', durationMs: 1000 },
 ] as const
 
-function App() {
-  const [activeIndex, setActiveIndex] = useState(0)
+const phases2: StoplightPhase[] = [
+  { id: 'green', colorClass: 'bg-emerald-500', durationMs: 1000 },
+  { id: 'yellow', colorClass: 'bg-yellow-400', durationMs: 1000 },
+  { id: 'red', colorClass: 'bg-red-500', durationMs: 1000 },
+] as const
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setActiveIndex((prev) => (prev + 1) % lights.length)
-    }, lights[activeIndex].durationMs)
+const phases3: StoplightPhase[] = [
+  { id: 'green', colorClass: 'bg-emerald-500', durationMs: 1000 },
+  { id: 'off', durationMs: 1000, isOff: true },
+  { id: 'yellow', colorClass: 'bg-yellow-400', durationMs: 1000 },
+  { id: 'red', colorClass: 'bg-red-500', durationMs: 1000 },
+] as const
 
-    return () => clearTimeout(timeout)
-  }, [activeIndex])
+const phases4: StoplightPhase[] = [
+  { id: 'green', colorClass: 'bg-emerald-500', durationMs: 1000 },
+  { id: 'yellow', colorClass: 'bg-yellow-400', durationMs: 1000 },
+  { id: 'red', colorClass: 'bg-red-500', durationMs: 1000 },
+] as const
 
+const phases5: StoplightPhase[] = [
+  { id: 'red1', colorClass: 'bg-red-500', durationMs: 1000 },
+  { id: 'red2', colorClass: 'bg-red-500', durationMs: 1000 },
+  { id: 'red3', colorClass: 'bg-red-500', durationMs: 1000 },
+] as const
+
+const sequence1 = [
+  { green: true },
+  { yellow: true },
+  { red: true },
+]
+
+const sequence2 = [
+  { green: true },
+  { red: true },
+  { yellow: true },
+]
+
+const sequence3 = [
+  { red: true },
+  { off: true },
+]
+
+const sequence4 = [
+  { green: true, yellow: true },
+  { red: true },
+]
+
+const sequence5 = [
+  { red1: true },
+  { red2: true },
+  { red3: true },
+]
+
+const App: React.FC<AppProps> = () => {
   return (
     <div className='flex flex-col items-center justify-center gap-6 w-screen h-screen bg-slate-900 text-white'>
       <h1 className='text-3xl font-semibold tracking-wide'>stoplight</h1>
-      <div className='flex flex-col items-center gap-4'>
-        <div className='flex flex-col items-center gap-2 rounded-lg bg-slate-800 p-4 shadow-lg'>
-          {lights.map((light, index) => (
-            <div
-              key={light.id}
-              className={cn(
-                'h-16 w-16 rounded-full transition-opacity duration-300',
-                light.colorClass,
-                index === activeIndex ? 'opacity-100' : 'opacity-25',
-              )}
-            />
-          ))}
-        </div>
+      <div className='flex items-center gap-4'>
+        <Stoplight phases={phases1} sequence={sequence1} />
+        <Stoplight phases={phases2} sequence={sequence2} />
+        <Stoplight phases={phases3} sequence={sequence3} />
+        <Stoplight phases={phases4} sequence={sequence4} />
+        <Stoplight phases={phases5} sequence={sequence5} />
       </div>
     </div>
   )
